@@ -11,7 +11,7 @@ Check out this repository into a folder within the Play Framework folder.
 
 The directory structure should look like this:
 
-    play-2.2.0
+    play-2.2.0/
         InventorySystem/
 
 
