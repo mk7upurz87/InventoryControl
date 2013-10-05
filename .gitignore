@@ -1,0 +1,11 @@
+# compiled java files
+*.class
+
+*.project
+*.proj
+
+
+# Package Files #
+*.jar
+*.war
+*.ear
