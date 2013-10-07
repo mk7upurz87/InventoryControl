@@ -1,7 +1,31 @@
-@(message: String)
+@(parts: List[Part], partForm: Form[Part])
 
-@main("Welcome to Play") {
+@import helper._
 
-    @play20.welcome(message, style = "Java")
-
+@main("Todo list") {
+    
+    <h1>@parts.size() part(s)</h1>
+    
+    <ul>
+        @for(part <- parts) {
+            <li>
+                @part.label
+                
+                @form(routes.Parts.deletePart(part.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new part</h2>
+    
+    @form(routes.Parts.newPart()) {
+        
+        @inputText(partForm("label")) 
+        
+        <input type="submit" value="Create">
+        
+    }
+    
 }
