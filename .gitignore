@@ -1,8 +1,6 @@
 # compiled java files
 *.class
 
-*.project
-*.proj
 .settings/org.eclipse.core.resources.prefs
 
 # Package Files
