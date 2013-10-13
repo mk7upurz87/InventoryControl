@@ -2,6 +2,7 @@
 *.class
 
 .settings/org.eclipse.core.resources.prefs
+.DS_STORE
 
 # Package Files
 *.jar
