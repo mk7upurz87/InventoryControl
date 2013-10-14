@@ -2,30 +2,43 @@
 
 @import helper._
 
-@main("Todo list") {
+@main(title = "Roptions Inventory Control") {
     
     <h1>@parts.size() part(s)</h1>
     
-    <ul>
-        @for(part <- parts) {
-            <li>
+    <table>
+    @for(part <- parts) {
+        <tr>
+            <td>
                 @part.label
-                
-                @form(routes.Parts.deletePart(part.id)) {
-                    <input type="submit" value="Delete">
-                }
-            </li>
-        }
-    </ul>
+            </td>
+            <td>
+            @form(routes.Parts.deletePart(part.id)) {
+                <input type="submit" value="Delete">
+            }
+            </td>
+        </tr>
+    }
+    </table>
     
     <h2>Add a new part</h2>
-    
     @form(routes.Parts.newPart()) {
         
-        @inputText(partForm("label")) 
-        
-        <input type="submit" value="Create">
-        
+        @inputText(partForm("label"),
+            args = '_label -> "Part Name: ", 'placeholder -> "name"
+        ) 
+        @inputText(partForm("id"),
+            args = '_label -> "Part ID: ", 'placeholder -> "id"
+        )
+        @inputText(partForm("qty"),
+            args = '_label -> "Part Quantity (Default = 0): ", 'placeholder -> "0"
+        )
+        @inputText(partForm("brand"),
+            args = '_label -> "Vendor/Brand Name: "
+        )
+        <p class="form-buttons">
+            <input type="submit" value="Create" action="@routes.Parts.newPart(name, id, qty, brand)">
+        </p>
     }
     
 }

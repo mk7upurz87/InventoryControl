@@ -1,14 +1,31 @@
+#################################
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
+##################################
 
+##################################
 # Home page
-GET     /                           controllers.Application.index()
+##################################
 
-# Parts
-GET     /parts                      controllers.Parts.index()
-POST    /parts                      controllers.Parts.newPart()
-POST    /parts/:id/delete           controllers.Parts.deletePart(id: Long)
+GET     /                           		controllers.Application.index()
 
+
+##################################
+#              Parts
+##################################
+
+GET     /parts                      		controllers.Parts.index()
+
+POST    /parts/:id/create/:label			controllers.Parts.newPart(label: String, id: Long, qty: Integer ?= 0, brand: String ?= "")
+
+POST    /parts/:id/delete           		controllers.Parts.deletePart(id: Long)
+
+POST	/parts/:id/decrement				controllers.Parts.decrementQty(id: Long, qty: Integer ?= 1)
+
+
+##################################
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+##################################
+
+GET     /assets/*file               		controllers.Assets.at(path="/public", file)
