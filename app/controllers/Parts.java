@@ -10,14 +10,21 @@ import models.*;
 
 public class Parts extends Controller {
 
-    static Form<Part> partForm = Form.form(Part.class);
-    private HashMap<long, Part> parts = new HashMap<long, Part>();
+    private static Form<Part> partForm = Form.form(Part.class);
+    private static HashMap<long, Part> parts = new HashMap<long, Part>();
 
     public static Result index() {
         return ok(views.html.index.render(Part.all(), partForm));
     }
 
-    public static Result newPart(String label, long id, int qty, String brand) {
+    public static Result newPart() {
+        Form<Part> filledForm = signupForm.bindFromRequest();
+        
+        String label    = filledForm.field("label").value();
+        long id         = Long.parseLong(filledForm.field("id").value());
+        int initialQty  = Integer.parseInt(filledForm.field("qty").value());
+        String brand    = filledForm.field("brand").value();
+
         if(!parts.containsKey(id)) {
             parts.add(id, new Part(label, id, initialQty, brand));
         } else {

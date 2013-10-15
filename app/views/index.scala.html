@@ -1,44 +1,41 @@
 @(parts: List[Part], partForm: Form[Part])
 
+@import helper.twitterBootstrap._
 @import helper._
 
-@main(title = "Roptions Inventory Control") {
-    
-    <h1>@parts.size() part(s)</h1>
-    
-    <table>
-    @for(part <- parts) {
-        <tr>
-            <td>
-                @part.label
-            </td>
-            <td>
-            @form(routes.Parts.deletePart(part.id)) {
-                <input type="submit" value="Delete">
-            }
-            </td>
-        </tr>
-    }
-    </table>
-    
-    <h2>Add a new part</h2>
-    @form(routes.Parts.newPart()) {
+<h1>ROptions Inventory Control</h1>
+<h2>Add a new part</h2>
+
+@helper.form(routes.Parts.newPart()) {
+
+    <fieldset>
+        <legend>Part information</legend>
         
-        @inputText(partForm("label"),
-            args = '_label -> "Part Name: ", 'placeholder -> "name"
-        ) 
-        @inputText(partForm("id"),
-            args = '_label -> "Part ID: ", 'placeholder -> "id"
+        @inputText(
+            partForm("id"), 
+            '_label -> "Part ID", 
+            '_help -> "Enter the unique part ID."
         )
-        @inputText(partForm("qty"),
-            args = '_label -> "Part Quantity (Default = 0): ", 'placeholder -> "0"
+        
+        @inputText(
+            partForm("label"),
+            '_label -> "Part Name",
+            '_help -> "Enter the part name."
         )
-        @inputText(partForm("brand"),
-            args = '_label -> "Vendor/Brand Name: "
+        
+        @inputText(
+            partForm("qty"), 
+            '_label -> "Quantity",
+            '_help -> "Enter an initial quantity for this part."
         )
-        <p class="form-buttons">
-            <input type="submit" value="Create" action="@routes.Parts.newPart(name, id, qty, brand)">
-        </p>
-    }
-    
-}
+        
+        @inputText(
+            partForm("brand"),
+            '_label -> "Vendor",
+            '_help -> "Enter the company you buy this part from."
+        )            
+    </fieldset>        
+    <div class="actions">
+        <input type="submit" class="btn primary" value="Create"></input>
+    </div>   
+})

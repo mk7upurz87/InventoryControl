@@ -6,10 +6,10 @@ import play.api.Play.current;
 
 public class Part {
     
-    public Long id;
-    public String label;
-    public int qty;
-    public String brand;
+    private static Long id;
+    private static String label;
+    private static int qty;
+    private static String brand;
 
     public Part(String label, long id, int qty, String brand) {
         this.label = label;
@@ -30,7 +30,7 @@ public class Part {
             mail.setRecipient("");
             mail.setFrom("Inventory Control <noreply@email.com>");
             String message =
-                "This part: " + this.label + "/n"
+                "This part: " + this.label + "/n" +
                 "brand: " + this.brand + "/n";
             if(this.brand.equals("")){
                 mail.send(message);
