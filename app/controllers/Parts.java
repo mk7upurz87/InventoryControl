@@ -17,10 +17,19 @@ public class Parts extends Controller {
     }
 
     public static Result newPart() {
-        return TODO;
+        Form<Part> filledForm = partForm.bindFromRequest();
+        if(filledForm.hasErrors()) {
+            return badRequest(
+              views.html.index.render(Part.all(), filledForm)
+            );
+        } else {
+            Part.create(filledForm.get());
+            return redirect(routes.Parts.index());
+        }
     }
 
     public static Result deletePart(long id) {
-        return TODO;
+        Part.delete(id);
+        return redirect(routes.Parts.index());
     }
 }
