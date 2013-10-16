@@ -43,18 +43,27 @@ public class Parts extends Controller {
     }
 
     public static Result decrementQty(long id, int qty) {
-        if(!parts.containsKey(id)) {
-            int newQty = parts.get(id).remove(qty);
+        if(parts.containsKey(id)) {
+            int newQty = parts.get(id);
 
             if(newQty < 0) {
                 return ok(newQty);
             }
 
             if(newQty == 0) {
-                return ok("part number " + id + "has reached 0!");
+                return ok("part number " + id + " has reached 0!");
             }
         } else {
             return ok("part number " + id + " does not exist in the database.");
         }
+    }
+
+    public static Result incrementQty(Long id, int qty) {
+        int newQty = 0;
+        if(parts.containsKey(id)) {
+            newQty = parts.get(id) + qty;
+        }
+
+        return ok("part number " + id + " has " + newQty + " in stock.");
     }
 }
