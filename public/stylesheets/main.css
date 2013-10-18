@@ -1,2 +1,46 @@
-.center { float: none; margin-left: auto; margin-right: auto; }
-h1.center {text-align: center;}
+/*************************
+****  Main Styles *******/
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+h1.center {
+	text-align: center;
+}
+.parts-list {
+	width: 100%;
+}
+.part-create-form {
+	padding-left: 20px;
+	width: 100%;
+}
+.input>input {
+	width: 165px;
+	float: left;
+}
+
+/*************************
+** Bootstrap Overrides **/
+
+.help-block {
+	position: relative;
+	top: -25px;
+	left: 7px;
+	font-size: 0.8em;
+}
+button.btn.btn-primary {
+	position: relative;
+	float: right;
+	top: 5px;
+	right: 20px;
+}
+
+/*************************
+***** Pure Overrides ****/
+
+.quantity-cell, .pure-button-error.close {
+	display: block;
+	text-align: center;
+	width: 100%;
+}

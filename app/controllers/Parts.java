@@ -32,4 +32,14 @@ public class Parts extends Controller {
         Part.delete(id);
         return redirect(routes.Parts.index());
     }
+
+    public static Result incrementPart(Long id) {
+        // Part.addQty(id, 1);
+        return redirect(routes.Parts.index());
+    }
+
+    public static Result decrementPart(Long id) {
+        // Part.removeQty(id, 1);
+        return redirect(routes.Parts.index());
+    }
 }
