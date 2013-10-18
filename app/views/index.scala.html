@@ -4,23 +4,29 @@
 @import helper.twitterBootstrap._
 
 @main("Todo list") {
-    
-    <h1>Parts</h1>
+<div class="container">
+
+    <h1 class="center">Inventory Control</h1>
+    <h2>Part(s)</h2>
     
     <ul>
-        <table border="1">
+        <table class="table table-striped">
             <tr>
                 <th>Type</th>
+                <th>Brand</th>
                 <th>Quantity</th>
+                <th>Delete</th>
             </tr>
 
             @for(part <- parts) {
                 <tr>
-                    <td>@part.label</td>
-                    <td>@part.quantity</td>
-                    <td>
+                    <td class="span4">@part.label</td>
+                    <td class="span4">@part.brand</td>
+                    <td class="span1">@part.quantity</td>
+                    <td class="span1">
                         @form(routes.Parts.deletePart(part.id)) {
-                            <input type="submit" value="Delete">
+                            <button class="btn btn-danger btn-mini"  type="submit" value="Delete">X</button>
+                            
                         }
                     </td>
                 </tr>
@@ -28,14 +34,22 @@
         </table>
     </ul>
     
-    <h2>Add a new part type</h2>
+    <h2>Add New Part</h2>
     
     @form(routes.Parts.newPart()) {
-        
-        @inputText(partForm("label")) 
-        @inputText(partForm("quantity"))
-        <input type="submit" value="Create">
+        <div class="span3">
+            @inputText(partForm("label"), args = '_label -> " ", 'placeholder -> "Type") 
+        </div>
+        <div class="span3">
+            @inputText(partForm("brand"), args = '_label -> " ", 'placeholder -> "Brand") 
+        </div>
+        <div class="span3">
+            @inputText(partForm("quantity"), args = '_label -> " ", 'placeholder -> "Quantity")
+        </div>
+        <p>
+        <button class="btn btn-primary" type="submit" value="Create">Create</button>
         
     }
-    
+
+</div>    
 }

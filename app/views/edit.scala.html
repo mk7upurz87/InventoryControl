@@ -1,0 +1,40 @@
+@(parts: List[Part], partForm: Form[Part])
+
+@import helper._
+
+@main("Todo list") {
+    
+    <h1>Parts</h1>
+    
+    <ul>
+        <table border="1">
+            <tr>
+                <th>Type</th>
+                <th>Quantity</th>
+            </tr>
+
+            @for(part <- parts) {
+                <tr>
+                    <td>@part.label</td>
+                    <td>@part.quantity</td>
+                    <td>
+                        @form(routes.Parts.deletePart(part.id)) {
+                            <input type="submit" value="Delete">
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </ul>
+    
+    <h2>Add a new part type</h2>
+    
+    @form(routes.Parts.newPart()) {
+        
+        @inputText(partForm("label")) 
+        @inputText(partForm("quantity"))
+        <input type="submit" value="Create">
+        
+    }
+    
+}

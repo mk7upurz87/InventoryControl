@@ -16,6 +16,9 @@ public class Part extends Model {
   @Required(message="You must name a new part type.")
   public String label;
 
+  @Required(message="You must name a new part brand.")
+  public String brand;
+
   @Required(message="You must specify an initial quantity.")
   @Min(message="Quantity can't be negative.", value=0)
   public Long quantity;

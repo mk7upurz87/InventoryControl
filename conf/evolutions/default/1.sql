@@ -6,6 +6,7 @@
 create table part (
   id                        bigint not null,
   label                     varchar(255),
+  brand                     varchar(255),
   quantity                  bigint,
   constraint pk_part primary key (id))
 ;
