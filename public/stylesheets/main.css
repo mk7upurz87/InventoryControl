@@ -39,8 +39,8 @@ button.btn.btn-primary {
 /*************************
 ***** Pure Overrides ****/
 
-.quantity-cell, .pure-button-error.close {
+/*.quantity-cell, .pure-button-error.close {
 	display: block;
 	text-align: center;
 	width: 100%;
-}
+}*/

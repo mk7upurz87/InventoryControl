@@ -1,0 +1,48 @@
+@(users: List[User], userForm: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("ROptions Inventory Control") {
+<div class="container">
+
+    <h1 class="center">Inventory Control</h1>
+    <h2>User(s)</h2>
+    
+    <ul>
+        <table class="pure-table pure-table-horizontal users-list">
+            <thead>
+                <tr>
+                    <td>Username</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+            @for(user <- users) {
+                <tr class="user-row">
+                    <td class="span4">@user.username</td>
+                    <td class="span1 delete-cell">
+                    @form(routes.Users.deleteUser(user.id)){
+                        <input class="pure-button-error close"  type="submit" value="Delete">
+                    }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </ul>
+    
+    <h2>Add New User</h2>
+
+    <div class="user-create-form">
+    @form(routes.Users.newUser()) {
+        <div class="span3">
+            @inputText(userForm("username"), args = '_label -> " ", 'placeholder -> "Username") 
+        </div>
+        
+        <button class="btn btn-primary" type="submit" value="Create">Create</button>
+        
+    }
+    </div>
+</div>    
+}

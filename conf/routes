@@ -9,8 +9,11 @@ GET     /                           controllers.Application.index()
 GET     /parts                      controllers.Parts.index()
 POST    /parts                      controllers.Parts.newPart()
 POST    /parts/:id/delete           controllers.Parts.deletePart(id: Long)
-POST    /parts/:id/increment        controllers.Parts.incrementPart(id: Long)
-POST    /parts/:id/decrement        controllers.Parts.decrementPart(id: Long)
+
+# Users
+GET	/users			    controllers.Users.index()
+POST	/users			    controllers.Users.newUser()
+POST	/users/:id/delete	    controllers.Users.deleteUser(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

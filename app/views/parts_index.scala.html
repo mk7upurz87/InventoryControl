@@ -15,9 +15,7 @@
                 <tr>
                     <td>Type</td>
                     <td>Brand</td>
-                    <td></td>
                     <td>Quantity</td>
-                    <td></td>
                     <td>Delete</td>
                 </tr>
             </thead>
@@ -26,20 +24,10 @@
                 <tr class="part-row">
                     <td class="span4">@part.label</td>
                     <td class="span4">@part.brand</td>
-                    <td class="span1">
-                    @form(routes.Parts.decrementPart(part.id)){
-                        <a class="btn icon-thin-arrow-left" type="submit" value="Decrement"><</a>
-                    }
-                    </td>
                     <td class="span1 quantity-cell">@part.quantity</td>
-                    <td class="span1">
-                    @form(routes.Parts.incrementPart(part.id)){
-                        <a class="btn icon-thin-arrow-right" type="submit" value="Increment">></a>
-                    }
-                    </td>     
                     <td class="span1 delete-cell">
                     @form(routes.Parts.deletePart(part.id)){
-                        <a class="pure-button-error close"  type="submit" value="Delete">x</a>
+                        <input class="pure-button-error close"  type="submit" value="Delete">
                     }
                     </td>
                 </tr>
