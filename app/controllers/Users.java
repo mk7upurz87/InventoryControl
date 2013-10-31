@@ -16,6 +16,11 @@ public class Users extends Controller {
         return ok(views.html.users_index.render(User.all(), userForm));
     }
 
+    public static Result viewUser(long id) {
+        User user = User.find.byId(id);
+        return ok(views.html.users_view.render(user));
+    }
+
     public static Result newUser() {
         Form<User> filledForm = userForm.bindFromRequest();
         if(filledForm.hasErrors()) {

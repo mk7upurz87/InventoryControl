@@ -20,7 +20,7 @@
             <tbody>
             @for(user <- users) {
                 <tr class="user-row">
-                    <td class="span4">@user.username</td>
+                    <td class="span4"><a href="/users/@user.id">@user.username</a></td>
                     <td class="span1 delete-cell">
                     @form(routes.Users.deleteUser(user.id)){
                         <input class="pure-button-error close"  type="submit" value="Delete">

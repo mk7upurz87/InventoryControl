@@ -12,6 +12,7 @@ POST    /parts/:id/delete           controllers.Parts.deletePart(id: Long)
 
 # Users
 GET	/users			    controllers.Users.index()
+GET	/users/:id		    controllers.Users.viewUser(id: Long)
 POST	/users			    controllers.Users.newUser()
 POST	/users/:id/delete	    controllers.Users.deleteUser(id: Long)
 
