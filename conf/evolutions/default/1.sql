@@ -11,6 +11,12 @@ create table part (
   constraint pk_part primary key (id))
 ;
 
+create table purchase_order (
+  id                        bigint not null,
+  ordername                 varchar(255),
+  constraint pk_purchase_order primary key (id))
+;
+
 create table user (
   id                        bigint not null,
   username                  varchar(255),
@@ -18,6 +24,8 @@ create table user (
 ;
 
 create sequence part_seq;
+
+create sequence purchase_order_seq;
 
 create sequence user_seq;
 
@@ -30,11 +38,15 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists part;
 
+drop table if exists purchase_order;
+
 drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists part_seq;
+
+drop sequence if exists purchase_order_seq;
 
 drop sequence if exists user_seq;
 
