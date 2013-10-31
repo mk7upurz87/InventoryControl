@@ -13,7 +13,8 @@ create table part (
 
 create table purchase_order (
   id                        bigint not null,
-  ordername                 varchar(255),
+  company_name              varchar(255),
+  contact_person            varchar(255),
   constraint pk_purchase_order primary key (id))
 ;
 

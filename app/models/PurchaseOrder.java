@@ -13,8 +13,14 @@ public class PurchaseOrder extends Model {
     @Id
     public Long id;
 
-    @Required(message="You must name a new order.")
-    public String ordername;
+    @Required
+    public String companyName;
+
+    @Required
+    public String contactPerson;
+
+    // TODO: Add date
+
 
     public static Finder<Long, PurchaseOrder> find = new Finder(
         Long.class, PurchaseOrder.class
