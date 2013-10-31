@@ -21,6 +21,9 @@ public class PurchaseOrder extends Model {
 
     // TODO: Add date
 
+    @Required
+    @ManyToOne
+    public User user;
 
     public static Finder<Long, PurchaseOrder> find = new Finder(
         Long.class, PurchaseOrder.class
@@ -31,6 +34,12 @@ public class PurchaseOrder extends Model {
     }
 
     public static void create(PurchaseOrder order) {
+        if(order.user.id == null) {
+            order.user = null;
+        } else {
+            order.user = User.find.byId(order.user.id);
+        }
+      
         order.save();
     }
 

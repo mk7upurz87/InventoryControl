@@ -16,6 +16,9 @@ public class User extends Model {
     @Required(message="You must name a new user.")
     public String username;
 
+    @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+    public List<PurchaseOrder> orders;
+
     public static Finder<Long, User> find = new Finder(
         Long.class, User.class
     );

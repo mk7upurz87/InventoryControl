@@ -15,6 +15,7 @@ create table purchase_order (
   id                        bigint not null,
   company_name              varchar(255),
   contact_person            varchar(255),
+  user_id                   bigint,
   constraint pk_purchase_order primary key (id))
 ;
 
@@ -30,6 +31,8 @@ create sequence purchase_order_seq;
 
 create sequence user_seq;
 
+alter table purchase_order add constraint fk_purchase_order_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_purchase_order_user_1 on purchase_order (user_id);
 
 
 
