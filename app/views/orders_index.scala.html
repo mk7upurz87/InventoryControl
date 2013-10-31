@@ -16,6 +16,7 @@
                     <td>ID</td>
                     <td>Company</td>
                     <td>Contact Person</td>
+                    <td>User (Owner)</td>
                     <td>Delete</td>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <td class="span4">@order.id</td>
                     <td>@order.companyName</td>
                     <td>@order.contactPerson</td>
+                    <td>@order.user.username</td>
                     <td class="span1 delete-cell">
                     @form(routes.PurchaseOrders.deleteOrder(order.id)){
                         <input class="pure-button-error close"  type="submit" value="Delete">
