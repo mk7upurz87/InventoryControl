@@ -1,0 +1,56 @@
+@(parts: List[Part], orderForm: Form[PurchaseOrder], users: List[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("New order") {
+<div class="container">
+
+    <h1 class="center">Inventory Control</h1>
+
+    <h2>Add New PurchaseOrder</h2>
+
+    <div class="order-create-form">
+    @form(routes.PurchaseOrders.createOrder()) {
+        <div class="span3">
+            @inputText(orderForm("companyName"), args = '_label -> " ", 'placeholder -> "Company") 
+        </div>
+
+        <div class="span3">
+            @inputText(orderForm("contactPerson"), args = '_label -> " ", 'placeholder -> "Contact Person") 
+        </div>
+
+        <div class="span3">
+          @select(orderForm("user.id"), users.map { user => user.id.toString -> user.username }, '_label -> "Choose a user")
+        
+        <button class="btn btn-primary" type="submit" value="Create">Create</button>
+        
+    }
+    </div>
+
+    <h2>Select parts for order.</h2>
+    
+    <ul>
+        <table class="pure-table pure-table-horizontal orders-list">
+            <thead>
+                <tr>
+                    <td>Type</td>
+                    <td>Brand</td>
+                    <td>Remaining</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+            @for(part <- parts) {
+                <tr class="order-row">
+                    <td class="span4">@part.label</td>
+                    <td>@part.brand</td>
+                    <td>@part.quantity</td>
+                    <td>@inputText(orderForm(part.id + ""), args = '_label -> " ")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </ul>
+</div>    
+}

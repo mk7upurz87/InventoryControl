@@ -19,6 +19,10 @@ public class PurchaseOrders extends Controller {
     }
 
     public static Result newOrder() {
+      return ok(views.html.orders_new.render(Part.all(), orderForm, User.all()));
+    }
+
+    public static Result createOrder() {
         Form<PurchaseOrder> filledForm = orderForm.bindFromRequest();
         Map<String,String[]> formData = request().body().asFormUrlEncoded();
 

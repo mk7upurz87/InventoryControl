@@ -18,7 +18,8 @@ POST	/users/:id/delete	    controllers.Users.deleteUser(id: Long)
 
 # Orders
 GET	/orders			    controllers.PurchaseOrders.index()
-POST	/orders			    controllers.PurchaseOrders.newOrder()
+GET	/orders/new		    controllers.PurchaseOrders.newOrder()
+POST	/orders			    controllers.PurchaseOrders.createOrder()
 POST	/orders/:id/delete	    controllers.PurchaseOrders.deleteOrder(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
