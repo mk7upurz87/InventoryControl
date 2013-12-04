@@ -7,29 +7,31 @@
 <div class="container">
 
     <h1 class="center">Inventory Control</h1>
+	<div class="row">
+		<h2>Add New Purchase Order</h2>
+	</div>
 
-    <h2>Add New PurchaseOrder</h2>
-
-    <div class="order-create-form">
+    <div class="row order-create-form">
     @form(routes.PurchaseOrders.createOrder()) {
-        <div class="span3">
+        <div class="span4">
             @inputText(orderForm("companyName"), args = '_label -> " ", 'placeholder -> "Company") 
         </div>
 
-        <div class="span3">
+        <div class="span4">
             @inputText(orderForm("contactPerson"), args = '_label -> " ", 'placeholder -> "Contact Person") 
         </div>
 
-        <div class="span3">
-          @select(orderForm("user.id"), users.map { user => user.id.toString -> user.username }, '_label -> "Choose a user")
-        
-        <button class="btn btn-primary" type="submit" value="Create">Create</button>
-        
-    }
+        <div class="span4">
+          @select(orderForm("user.id"), users.map { user => user.id.toString -> user.username }, '_label -> " ")        
+		</div>
+		<button class="btn btn-primary" type="submit" value="Create">Create</button>
+   }
     </div>
 
-    <h2>Select parts for order.</h2>
-    
+	<div class="row">
+		<h2>Select parts for order.</h2>
+	</div>
+    <div class="row">
     <ul>
         <table class="pure-table pure-table-horizontal orders-list">
             <thead>
@@ -52,5 +54,6 @@
             </tbody>
         </table>
     </ul>
+	</div>
 </div>    
 }
