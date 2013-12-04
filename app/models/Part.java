@@ -20,7 +20,6 @@ public class Part extends Model {
     public String brand;
 
     @Required(message="You must specify an initial quantity.")
-    @Min(message="Quantity can't be negative.", value=0)
     public Long quantity;
 
     public static Finder<Long, Part> find = new Finder(
