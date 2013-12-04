@@ -25,6 +25,10 @@ public class PurchaseOrder extends Model {
     @ManyToOne
     public User user;
 
+    @Required
+    @ManyToOne
+    public Part part;
+
     public static Finder<Long, PurchaseOrder> find = new Finder(
         Long.class, PurchaseOrder.class
     );
@@ -38,6 +42,11 @@ public class PurchaseOrder extends Model {
             order.user = null;
         } else {
             order.user = User.find.byId(order.user.id);
+        }
+        if(order.part.id == null) {
+            order.part = null;
+        } else {
+            order.part = Part.find.byId(order.part.id);
         }
       
         order.save();
