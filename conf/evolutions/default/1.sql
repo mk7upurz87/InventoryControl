@@ -3,36 +3,42 @@
 
 # --- !Ups
 
-create table part (
+create table PART (
   id                        bigint not null,
   label                     varchar(255),
   brand                     varchar(255),
   quantity                  bigint,
-  constraint pk_part primary key (id))
+  constraint uq_PART_1 unique (ID),
+  constraint pk_PART primary key (id))
 ;
 
-create table purchase_order (
+create table PURCHASEORDER (
   id                        bigint not null,
   company_name              varchar(255),
   contact_person            varchar(255),
   user_id                   bigint,
-  constraint pk_purchase_order primary key (id))
+  part_id                   bigint,
+  constraint uq_PURCHASEORDER_1 unique (ID),
+  constraint pk_PURCHASEORDER primary key (id))
 ;
 
-create table user (
+create table USER (
   id                        bigint not null,
   username                  varchar(255),
-  constraint pk_user primary key (id))
+  constraint uq_USER_1 unique (ID),
+  constraint pk_USER primary key (id))
 ;
 
-create sequence part_seq;
+create sequence PART_seq;
 
-create sequence purchase_order_seq;
+create sequence PURCHASEORDER_seq;
 
-create sequence user_seq;
+create sequence USER_seq;
 
-alter table purchase_order add constraint fk_purchase_order_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_purchase_order_user_1 on purchase_order (user_id);
+alter table PURCHASEORDER add constraint fk_PURCHASEORDER_user_1 foreign key (user_id) references USER (id) on delete restrict on update restrict;
+create index ix_PURCHASEORDER_user_1 on PURCHASEORDER (user_id);
+alter table PURCHASEORDER add constraint fk_PURCHASEORDER_part_2 foreign key (part_id) references PART (id) on delete restrict on update restrict;
+create index ix_PURCHASEORDER_part_2 on PURCHASEORDER (part_id);
 
 
 
@@ -40,17 +46,17 @@ create index ix_purchase_order_user_1 on purchase_order (user_id);
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists part;
+drop table if exists PART;
 
-drop table if exists purchase_order;
+drop table if exists PURCHASEORDER;
 
-drop table if exists user;
+drop table if exists USER;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists part_seq;
+drop sequence if exists PART_seq;
 
-drop sequence if exists purchase_order_seq;
+drop sequence if exists PURCHASEORDER_seq;
 
-drop sequence if exists user_seq;
+drop sequence if exists USER_seq;
 

@@ -8,18 +8,24 @@ import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
 @Entity
+@Table(
+    name="PART", 
+    uniqueConstraints=
+        @UniqueConstraint(columnNames={"ID"})
+)
 public class Part extends Model {
   
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long id;
 
-    @Required(message="You must name a new part type.")
+    @Required
     public String label;
 
-    @Required(message="You must name a new part brand.")
+    @Required
     public String brand;
 
-    @Required(message="You must specify an initial quantity.")
+    @Required
     public Long quantity;
 
     public static Finder<Long, Part> find = new Finder(

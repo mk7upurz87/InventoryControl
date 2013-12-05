@@ -25,7 +25,7 @@ public class Users extends Controller {
         Form<User> filledForm = userForm.bindFromRequest();
         if(filledForm.hasErrors()) {
             return badRequest(
-              views.html.users_index.render(User.all(), filledForm)
+                views.html.users_index.render(User.all(), filledForm)
             );
         } else {
             User.create(filledForm.get());

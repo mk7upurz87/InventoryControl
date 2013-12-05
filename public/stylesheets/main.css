@@ -29,6 +29,11 @@ h1.center {
 	left: 7px;
 	font-size: 0.8em;
 }
+@media(max-width:963px) {
+	.help-block {
+		top: 0px;
+	}
+}
 button.btn.btn-primary {
 	position: relative;
 	float: right;

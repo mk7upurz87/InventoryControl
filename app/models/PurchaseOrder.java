@@ -8,9 +8,15 @@ import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
 @Entity
+@Table(
+    name="PURCHASEORDER", 
+    uniqueConstraints=
+        @UniqueConstraint(columnNames={"ID"})
+)
 public class PurchaseOrder extends Model {
   
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long id;
 
     @Required
@@ -18,8 +24,6 @@ public class PurchaseOrder extends Model {
 
     @Required
     public String contactPerson;
-
-    // TODO: Add date
 
     @Required
     @ManyToOne

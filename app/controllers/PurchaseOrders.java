@@ -32,7 +32,6 @@ public class PurchaseOrders extends Controller {
             );
         } else {
             PurchaseOrder po = filledForm.get();
-
             PurchaseOrder.create(po);
             return redirect(routes.PurchaseOrders.index());
         }

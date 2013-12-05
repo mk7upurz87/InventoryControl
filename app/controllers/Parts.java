@@ -23,6 +23,7 @@ public class Parts extends Controller {
               views.html.parts_index.render(Part.all(), filledForm)
             );
         } else {
+            Logger.debug("filledForm.get().toString()");
             Part.create(filledForm.get());
             return redirect(routes.Parts.index());
         }

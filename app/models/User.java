@@ -8,12 +8,18 @@ import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
 @Entity
+@Table(
+    name="USER", 
+    uniqueConstraints=
+        @UniqueConstraint(columnNames={"ID"})
+)
 public class User extends Model {
   
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long id;
 
-    @Required(message="You must name a new user.")
+    @Required
     public String username;
 
     @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
