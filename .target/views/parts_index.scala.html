@@ -1,0 +1,58 @@
+@(parts: List[Part], partForm: Form[Part])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("ROptions Inventory Control") {
+<div class="container">
+
+    <h1 class="center">Inventory Control</h1>
+    <h2>Part(s)</h2>
+    
+    <ul>
+        <table class="pure-table pure-table-horizontal parts-list">
+            <thead>
+                <tr>
+                    <td>Type</td>
+                    <td>Brand</td>
+                    <td>Quantity</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+            @for(part <- parts) {
+                <tr class="part-row">
+                    <td class="span4">@part.label</td>
+                    <td class="span4">@part.brand</td>
+                    <td class="span1 quantity-cell">@part.quantity</td>
+                    <td class="span1 delete-cell">
+                    @form(routes.Parts.deletePart(part.id)){
+                        <input class="pure-button-error close"  type="submit" value="Delete">
+                    }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </ul>
+    
+    <h2>Add New Part</h2>
+
+    <div class="part-create-form">
+    @form(routes.Parts.newPart()) {
+        <div class="span3">
+            @inputText(partForm("label"), args = '_label -> " ", 'placeholder -> "Part Name") 
+        </div>
+        <div class="span3">
+            @inputText(partForm("brand"), args = '_label -> " ", 'placeholder -> "Vendor") 
+        </div>
+        <div class="span3">
+            @inputText(partForm("quantity"), args = '_label -> " ", 'placeholder -> "Quantity")
+        </div>
+        <p>
+        <button class="btn btn-primary" type="submit" value="Create">Create</button>
+        
+    }
+    </div>
+</div>    
+}

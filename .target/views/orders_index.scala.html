@@ -1,0 +1,47 @@
+@(orders: List[PurchaseOrder], orderForm: Form[PurchaseOrder], users: List[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("ROptions Inventory Control") {
+<div class="container">
+
+    <h1 class="center">Inventory Control</h1>
+    <h2>PurchaseOrder(s)</h2>
+    
+    <ul>
+        <table class="pure-table pure-table-horizontal orders-list">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Company</td>
+                    <td>Contact Person</td>
+                    <td>User (Owner)</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+            @for(order <- orders) {
+                <tr class="order-row">
+                    <td class="span4">@order.id</td>
+                    <td>@order.companyName</td>
+                    <td>@order.contactPerson</td>
+                    <td>@order.user.username</td>
+                    <td class="span1 delete-cell">
+                    @form(routes.PurchaseOrders.deleteOrder(order.id)){
+                        <input class="pure-button-error close"  type="submit" value="Delete">
+                    }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </ul>
+
+    @form(routes.PurchaseOrders.newOrder()){
+      <input type="submit" value="New Order">
+    }
+
+
+</div>    
+}

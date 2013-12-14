@@ -1,0 +1,64 @@
+@(parts: List[Part], orderForm: Form[PurchaseOrder], users: List[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("New order") {
+<div class="container">
+
+    <h1 class="center">Inventory Control</h1>
+	<div class="row">
+		<h2>Add New Purchase Order</h2>
+	</div>
+
+    <div class="row order-create-form">
+    @form(routes.PurchaseOrders.createOrder()) {
+        <div class="span4">
+            @inputText(orderForm("companyName"), args = '_label -> "Company", 'placeholder -> "Company") 
+        </div>
+
+        <div class="span4">
+            @inputText(orderForm("contactPerson"), args = '_label -> "Contact", 'placeholder -> "Contact Person") 
+        </div>
+
+        <div class="span4">
+            @select(orderForm("user.id"), users.map { user => user.id.toString -> user.username }, '_label -> "Username")        
+		</div>
+		
+        <div class="span4">
+            @select(orderForm("part.id"), parts.map { part => part.id.toString -> part.label }, '_label -> "Part")        
+        </div>
+
+        <button class="btn btn-primary" type="submit" value="Create">Create</button>
+   }
+    </div>
+
+	<div class="row">
+		<h2>Select parts for order.</h2>
+	</div>
+    <div class="row">
+    <ul>
+        <table class="pure-table pure-table-horizontal orders-list">
+            <thead>
+                <tr>
+                    <td>Type</td>
+                    <td>Brand</td>
+                    <td>Remaining</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+            @for(part <- parts) {
+                <tr class="order-row">
+                    <td class="span4">@part.label</td>
+                    <td>@part.brand</td>
+                    <td>@part.quantity</td>
+                    <td>@inputText(orderForm(part.id + ""), args = '_label -> " ")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </ul>
+	</div>
+</div>    
+}

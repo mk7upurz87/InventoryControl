@@ -11,16 +11,16 @@ POST    /parts                      controllers.Parts.newPart()
 POST    /parts/:id/delete           controllers.Parts.deletePart(id: Long)
 
 # Users
-GET		/users			    controllers.Users.index()
-GET		/users/:id		    controllers.Users.viewUser(id: Long)
-POST	/users			    controllers.Users.newUser()
-POST	/users/:id/delete	    controllers.Users.deleteUser(id: Long)
+GET		/users			    		controllers.Users.index()
+GET		/users/:id		    		controllers.Users.viewUser(id: Long)
+POST	/users			    		controllers.Users.newUser()
+POST	/users/:id/delete	    	controllers.Users.deleteUser(id: Long)
 
 # Orders
-GET		/orders			    controllers.PurchaseOrders.index()
-GET		/orders/new		    controllers.PurchaseOrders.newOrder()
-POST	/orders			    controllers.PurchaseOrders.createOrder()
-POST	/orders/:id/delete	    controllers.PurchaseOrders.deleteOrder(id: Long)
+GET		/orders			    		controllers.PurchaseOrders.index()
+GET		/orders/new		    		controllers.PurchaseOrders.newOrder()
+POST	/orders			    		controllers.PurchaseOrders.createOrder()
+POST	/orders/:id/delete	    	controllers.PurchaseOrders.deleteOrder(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
